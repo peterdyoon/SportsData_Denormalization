@@ -1,0 +1,12 @@
+th:hover {
+    color: deepskyblue;
+    cursor: default;
+}
+
+#playeredit {
+    table-layout: fixed;
+}
+
+#Name {
+    width: 400px;
+}

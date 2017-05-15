@@ -1,0 +1,26 @@
+<div ng-controller = 'myController'>
+   <div class="col-xs-8">
+        <h1>High Score Rank</h1>
+        <custom-filter-dir></custom-filter-dir>
+        <custom-filter-week-dir></custom-filter-week-dir>
+        <custom-filter-game-dir></custom-filter-game-dir>
+        <table class="table table-striped table-condensed" ng-init = "myOrderFuncData('-Score')" ng-controller = 'myScoresController'>
+            <tr>
+                <th ng-click = "myOrderFunc('Name')">Name</th>
+                <th ng-click = "myOrderFunc('Team')">Team</th>
+                <th ng-click = "myOrderFunc('Gender')">Gender</th>
+                <th ng-click = "myOrderFuncData('-Week')">Week</th>
+                <th ng-click = "myOrderFuncData('-Game')">Game</th>
+                <th ng-click = "myOrderFuncData('-Score')">Score</th>
+            </tr>
+            <tr ng-repeat="score in scoredata | filter:{score:'!undefined'} | filter : filtername | filter : {Game:SpecGame} | filter : {Week:SpecWeek} | orderBy:myOrder">
+                <td>{{score.Name}}</td>
+                <td>{{score.Team}}</td>
+                <td>{{score.Gender}}</td>
+                <td>{{score.Week}}</td>
+                <td>{{score.Game}}</td>
+                <td>{{score.Score}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

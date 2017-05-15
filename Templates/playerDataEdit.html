@@ -1,0 +1,44 @@
+<div ng-controller = "myController" class = "col-xs-9">
+<h1>Players (Edit Scores)</h1>
+<custom-filter-dir></custom-filter-dir>
+<custom-filter-week-dir></custom-filter-week-dir>
+<custom-filter-game-dir></custom-filter-game-dir>
+<p>Click headers to filter ascending/descending.</p>
+<br><br>
+<table id = "playeredit" class="table table-striped table-condensed" ng-init = 'myOrderFunc("Team")' ng-controller = 'myScoresController'>
+    <tr>
+        <th ng-click = "myOrderFunc('Name')">Name</th>
+        <th ng-click = "myOrderFunc('Team')">Team</th>
+        <th ng-click = "myOrderFuncData('-Week')">Week</th>
+        <th ng-click = "myOrderFuncData('-Game')">Game</th>
+        <th ng-click = "myOrderFuncData('-Score')">Score</th>
+        <th ng-click = "myOrderFuncData('-LastUpdated')">Last Update</th>
+        <th>Edit</th>
+    </tr>
+    <tr ng-repeat="score in scoredata | filter:{score:'!undefined'} | filter : filtername | filter : {Game:SpecGame} | filter : {Week:SpecWeek} | orderBy:myOrder">
+        <td>
+            {{score.Name}}
+        </td>
+        <td>
+            {{score.Team}}
+        </td>
+        <td>
+            {{score.Week}}
+        </td>
+        <td>
+            {{score.Game}}
+        </td>
+        <td><input class = "form-control" ng-show="editable" type="number" ng-model="score.Score"/><span ng-hide = "editable">{{score.Score}}</span>
+        </td>
+        <td>
+            {{score.LastUpdated}}
+        </td>
+        <td>
+            <button class="btn btn-danger" ng-click="editable = true;newbowler = createClone(bowler);" ng-hide = "editable">Edit</button>
+            <button class="btn btn-success" ng-click="score.LastUpdated = timetotimeStamp(); editable = false; timestamp = true;atomicbomb(score);" ng-show = "editable">Save</button>
+<!--            <button class = "btn btn-caution" ng-click = "editable = false" ng-show = "editable">Cancel</button>-->
+            <p ng-show = "timestamp">{{score.LastUpdated}}</p>
+        </td>
+    </tr>
+</table>
+</div>

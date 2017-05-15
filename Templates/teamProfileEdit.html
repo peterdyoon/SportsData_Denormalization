@@ -1,0 +1,32 @@
+<div ng-controller = "myController" class = "col-xs-6">
+<h1>Edit Teams</h1>
+<custom-filter-dir></custom-filter-dir>
+<p>Click headers to filter ascending/descending.</p>
+<br><br>
+<table id = "playeredit" class="table table-striped table-condensed" ng-init = 'editable = true'>
+    <tr>
+        <th ng-click = "myOrderFunc('Team')">Team</th>
+        <th ng-click = "myOrderFunc('Name')">Names</th>
+        <th>Last Updated</th>
+        <th>Edit</th>
+    </tr>
+    <tr ng-repeat="team in teamdata | filter:{score:'!undefined'} | filter : filtername | orderBy:myOrder">
+        <td><input class = "form-control" ng-show="editable" type="text" ng-model="team.Name"/>
+            <span ng-hide = "editable">{{team.Name}}</span>
+        </td>
+        <td>
+          <div ng-repeat = "bowler in team.Players">
+               {{bowler}}
+            </div>
+        </td>
+        <td>
+            {{team.LastUpdated}}
+        </td>
+        <td>
+            <button class="btn btn-danger" ng-click="editable = true;" ng-hide = "editable">Edit</button>
+            <button class="btn btn-success" ng-click="team.LastUpdated = timetotimeStamp(); editable = false;atomicteamprofile(team)" ng-show = "editable">Save</button>
+<!--            <button class = "btn btn-caution" ng-click = "editable = false" ng-show = "editable">Cancel</button>-->
+        </td>
+    </tr>
+</table>
+</div>

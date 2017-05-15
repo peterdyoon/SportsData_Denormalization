@@ -1,0 +1,9 @@
+<div class = 'col-xs-6' ng-controller = 'myController'>
+   <div ng-controller = 'myMainController'>
+        <h1>Hello!</h1>
+        <button class = "btn btn-success" ng-click = "newWeek();">Proceed to Week {{currentweek + 1}}</button><br><br>
+        <button class = "btn btn-primary" ng-click = "newGame();">Proceed to Game {{currentgame}}</button><br><br>
+        <div ng-repeat = 'teamscore in scheduledata'>
+        </div>
+    </div>
+</div>

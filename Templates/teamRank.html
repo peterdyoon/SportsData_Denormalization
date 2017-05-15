@@ -1,0 +1,21 @@
+<div ng-controller = 'myController' class = col-xs-6>
+    <h1>Teams</h1>
+    <custom-filter-dir></custom-filter-dir>
+    <p>Click headers to filter ascending/descending.</p>
+    <table class="table table-striped table-condensed">
+        <tr>
+            <th ng-click="myOrderFunc('Name')">Team Name</th>
+            <th ng-click="myOrderFuncData('-W', 'G1')">Game 1</th>
+            <th ng-click="myOrderFuncData('-W', 'G2')">Game 2</th>
+            <th ng-click="myOrderFuncData('-W', 'G3')">Game 3</th>
+            <th ng-click="myOrderFuncData('-Week', 'Average')">Average</th>
+        </tr>
+        <tr ng-repeat="Team in teamdata | orderBy: myOrder | filter : filtername">
+            <td>{{Team.Name}}</td>
+            <td>{{Team.W1G1}}</td>
+            <td>{{Team.W1G2}}</td>
+            <td>{{Team.W1G3}}</td>
+            <td>{{Team.Week1Average | number:2}}</td>
+        </tr>
+    </table>
+</div>

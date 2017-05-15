@@ -1,0 +1,35 @@
+<div ng-controller = 'myController'>
+   <div class="col-xs-6">
+        <h1>Game Schedule</h1>
+        <custom-filter-dir></custom-filter-dir>
+        <custom-filter-week-dir></custom-filter-week-dir>
+        <custom-filter-game-dir></custom-filter-game-dir>
+        <br><br>
+        <table class="table table-striped table-condensed" ng-controller = 'myGamesController'>
+            <tr>
+                <th>Team</th>
+                <th>Lane</th>
+                <th>Player</th>
+                <th>Score</th>
+                <th>Total</th>
+                <th>Wins</th>
+            </tr>
+            <tr ng-repeat="game in gamedata | filter : {Week:SpecWeek} | filter : {Bracket:SpecBracket} | filter : {Game:SpecGame} | filter : filtername | orderBy: '-Total' | orderBy: '-Wins'">
+                <td>{{game.Team}}</td>
+                <td>{{game.Lane}}</td>
+                <td>
+                    <p>{{game.Player1}}</p>
+                    <p>{{game.Player2}}</p>
+                    <p>{{game.Player3}}</p>
+                </td>
+                <td>
+                    <p>{{game.Score1}}</p>
+                    <p>{{game.Score2}}</p>
+                    <p>{{game.Score3}}</p>
+                </td>
+                <td>{{game.Total}}</td>
+                <td>{{game.Wins}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

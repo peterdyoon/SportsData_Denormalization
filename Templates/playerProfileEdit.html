@@ -1,0 +1,34 @@
+<div ng-controller = "myController" class = "col-xs-9">
+<h1>Players (Edit Profile)</h1>
+<custom-filter-dir></custom-filter-dir>
+<p>Click headers to filter ascending/descending.</p>
+<br><br>
+<div ng-controller = 'myBowlersController'>
+<table id = "playeredit" class="table table-striped table-condensed" ng-init = 'editable = true'>
+    <tr>
+        <th ng-click = "myOrderFunc('Name')">Name</th>
+        <th ng-click = "myOrderFunc('Gender')">Gender</th>
+        <th ng-click = "myOrderFunc('Team')">Team</th>
+        <th ng-click = "myOrderFuncData('-LastUpdated')">Last Update</th>
+        <th>Edit</th>
+    </tr>
+    <tr ng-repeat="bowler in bowlerdata | filter:{bowler:'!undefined'} | filter : filtername | orderBy:myOrder">
+        <td><input class = "form-control" ng-show="editable" type="text" ng-model="bowler.Name"/>
+            <span ng-hide = "editable">{{bowler.Name}}</span>
+        </td>
+        <td><input class = "form-control" ng-show="editable" type="text" ng-model="bowler.Gender"/>
+            <span ng-hide = "editable">{{bowler.Gender}}</span>
+        </td>
+        <td>
+            {{bowler.Team}}
+        </td>
+        <td>{{bowler.LastUpdated}}</td>
+        <td>
+            <button class="btn btn-danger" ng-click="editable = true;newbowler = createClone(bowler);" ng-hide = "editable">Edit</button>
+            <button class="btn btn-success" ng-click="bowler.LastUpdated = timetotimeStamp(); editable = false; timestamp = true;atomicprofile(bowler);" ng-show = "editable">Save</button>
+<!--            <button class = "btn btn-caution" ng-click = "editable = false" ng-show = "editable">Cancel</button>-->
+        </td>
+    </tr>
+</table>
+</div>
+</div>
